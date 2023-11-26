@@ -1,0 +1,110 @@
+*
+{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.body{
+
+    width: 500px;
+    height: 100vh;
+    margin: auto;
+    
+}
+
+.game{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.score{
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+    border: 1px dotted gray;
+    margin-bottom: 5px;
+}
+
+.score .p1::before{
+    content: "Player X: ";
+    font-weight: 700;
+}
+
+.score .p2::before{
+    content: "Player O: ";
+    font-weight: 700;
+}
+
+.reset{
+    margin-bottom: 10px;
+    
+}
+
+.board{
+    margin: auto;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+}
+
+.board-grid{
+    width: 300px;
+    height: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    border: 2px solid black;
+}
+
+.grid-square{
+    
+    border: 1px solid silver;
+    position: relative;
+}
+
+.grid-square:hover{
+    background-color: whitesmoke;
+}
+
+.color1-triangle{
+    background-color: red;
+    width: 100px;
+    height: 100px;
+    clip-path: polygon(0 0, 0% 100%, 100% 0);
+
+    position: absolute;
+}
+
+
+.color2-triangle{
+    background: rgb(22, 22, 208);
+    width: 100px;
+    height: 100px;
+    clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+
+    position: absolute;
+}
+
+.color1-triangle:hover,
+.color2-triangle:hover{
+    
+    filter: brightness(120%);
+    transition-duration: .2s;
+    border: 2px dotted white;
+    cursor: pointer;
+    z-index: 99;
+}
+
+.color2-triangle:hover{
+    clip-path: polygon(84% 0, 100% 0, 100% 100%, 0 100%, 0 82%);
+
+}
+
+.color1-triangle:hover{
+    clip-path: polygon(100% 0, 100% 23%, 28% 100%, 0 100%, 0 0);
+}

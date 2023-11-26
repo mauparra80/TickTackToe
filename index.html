@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="game">
+            <h3>Games Won</h3>
+            <div class="score">
+               
+               <div class="p1">0</div>
+               <div class="p2">0</div>
+            </div>
+            <button class="reset" type="button">Reset</button>
+            
+            <div class="board">
+                <div class="board-grid">
+                    <div class="grid-square" data-grid="1">
+                        <!-- <div class="color1-triangle"></div>
+                        <div class="color2-triangle"></div> -->
+                    </div>
+                    <div class="grid-square"  data-grid="2">2</div>
+                    <div class="grid-square"  data-grid="3">3</div>
+                    <div class="grid-square"  data-grid="4">4</div>
+                    <div class="grid-square"  data-grid="5">5</div>
+                    <div class="grid-square"  data-grid="6">6</div>
+                    <div class="grid-square"  data-grid="7">7</div>
+                    <div class="grid-square"  data-grid="8">8</div>
+                    <div class="grid-square"  data-grid="9">9</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        //create gameboard, player, game objects
+
+        //gameboard module.
+        (function() {
+        const gameBoard = () =>
+        {
+            let gridBoard = document.querySelectorAll('[data-grid]'); //pointer to divs
+          
+
+            //add listener to each grid
+            gridBoard.forEach((grid) => {
+               grid.addEventListener('mouseenter', () => {
+                  // grid.style.backgroundColor = 'blue';
+                  // grid.dataset.selected = 'p1';
+                  // console.log(grid.dataset.selected);
+                  if (!grid.dataset.selected){
+                     openSelection(grid);
+                  }
+                  
+               })
+               grid.addEventListener('mouseleave', () => {
+                  closeSelection(grid);
+               })
+            })
+            
+            //when grid is clicked, it will open 2 color selection 
+            //needs to open specifically on that grid
+            const openSelection = (grid) =>
+            {
+               grid.innerHTML = `
+               <div class="color1-triangle" onclick="p1Selected(this)"></div>
+               <div class="color2-triangle" onclick="p2Selected(this)"></div>`;
+
+
+            }
+
+            const closeSelection = (grid) =>
+            {
+               grid.innerHTML = '';
+            }
+            
+
+             
+        
+
+
+            //we should type p1.checkConditions or gameboard.check("p1")
+            //check all winning conditions. this is not efficient but it will work for now
+            const checkConditions = (player) =>
+            {
+               // const player = 'p1'
+
+               if (gridBoard[0].dataset.selected === player)
+               {
+                  if (gridBoard[1].dataset.selected === player){
+                     if (gridBoard[2].dataset.selected === player){
+                        console.log(player + " has won");
+                     }
+                  }
+                  else if (gridBoard[3].dataset.selected === player){
+                     if (gridBoard[6].dataset.selected === player){
+                        console.log(player + " has won");
+                     }
+                  }
+                  else if (gridBoard[4].dataset.selected === player){
+                     if (gridBoard[8].dataset.selected === player){
+                        console.log(player + " has won");
+                     }
+                  }
+               }
+               else if (gridBoard[8].dataset.selected === player){
+                  if (gridBoard[5].dataset.selected === player){
+                     if (gridBoard[2].dataset.selected === player){
+                        console.log(player + " has won");
+                     }
+                  }
+                  else if (gridBoard[7].dataset.selected === player){
+                     if (gridBoard[6].dataset.selected === player){
+                        console.log(player + " has won");
+                     }
+                  }
+               }
+               else if (gridBoard[4].dataset.selected === player){
+                  if (gridBoard[1].dataset.selected === player){
+                     if (gridBoard[7].dataset.selected === player){
+                        //win
+                     }
+                  }
+                  else if (gridBoard[3].dataset.selected === player){
+                     if (gridBoard[5].dataset.selected === player){
+                        //win
+                     }
+                  }
+                  else if (gridBoard[2].dataset.selected === player){
+                     if (gridBoard[6].dataset.selected === player){
+                        //win
+                     }
+                  }
+               }
+            }
+        }
+
+        let newboard = gameBoard();
+
+
+         
+
+
+      })();
+
+        const player = (name, color) =>
+        {
+
+        }
+
+        // if p1 selects grid
+        function p1Selected(element)
+        {
+            element.parentElement.style.backgroundColor = "red";
+            element.parentElement.dataset.selected = "p1";
+            newBoard.checkConditions("p1");
+         }
+
+         function p2Selected(element)
+         {
+            element.parentElement.style.backgroundColor = "blue";
+            element.parentElement.dataset.selected = "p2";
+            newBoard.checkConditions("p2");
+         }
+    </script>
+</body>
+</html>
