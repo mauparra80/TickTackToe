@@ -13,6 +13,12 @@
     
 }
 
+.container{
+    display: none;
+}
+
+
+
 .game{
     margin-top: 50px;
     display: flex;
@@ -107,4 +113,35 @@
 
 .color1-triangle:hover{
     clip-path: polygon(100% 0, 100% 23%, 28% 100%, 0 100%, 0 0);
+}
+
+
+
+/* START SCREEN */
+
+.start-screen{
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.start-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    border: 1px solid black;
+    padding: 20px; 
+}
+
+.start-container .start-title{
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+.start-container .startBtn{
+    grid-area: 3 / 1 / 4 / 3;
 }
